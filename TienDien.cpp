@@ -1,15 +1,10 @@
 #include <bits/stdc++.h>
 #include <stdlib.h>
+#include <math.h>
 #include <string.h>
 using namespace std;
 
 #define SIZE 100
-
-// void Nhap_TT_KH(ThongTinKhachHang &KH);
-// void In_TT_KH(ThongTinKhachHang KH);
-// void NhapSoPhanTu(int &n);
-// void NhapMang(ThongTinKhachHang KH[SIZE], int n);
-// void XuatMang(ThongTinKhachHang KH[SIZE], int n);
 
 struct ThongTinKhachHang
 {
@@ -39,8 +34,8 @@ void Nhap_TT_KH(KH &x)
 
 void In_TT_KH(KH x)
 {
-    
-
+    x.Chi_so_tieu_thu = x.Chi_so_sau - x.Chi_so_truoc;
+    x.So_tien = x.Chi_so_tieu_thu * 5000;
     cout << "Ma khach hang: " << x.Ma_KH << endl; 
     cout << "Ho Ten khach hang: " << x.HoTen_KH << endl; 
     cout << "Dia chi khach hang: " << x.DiaChi_KH << endl; 
@@ -66,9 +61,21 @@ void Xuat_DS_KH(KH arr[SIZE], int n)
     {
         cout << "---------- Thong tin khach hang thu [" << i + 1 << "] ----------" << endl;
         In_TT_KH(arr[i]);
+        // arr[i].Chi_so_tieu_thu = arr[i].Chi_so_sau - arr[i].Chi_so_truoc;
+        // arr[i].So_tien = arr[i].Chi_so_tieu_thu * 5000;
+    }
+}
+
+void TinhPhi(KH arr[SIZE], int n)
+{
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
         arr[i].Chi_so_tieu_thu = arr[i].Chi_so_sau - arr[i].Chi_so_truoc;
         arr[i].So_tien = arr[i].Chi_so_tieu_thu * 5000;
+        sum += arr[i].So_tien;
     }
+    cout << "Tong so tien cua " << n << " khach hang trong danh sach la: " << sum << endl;
 }
 
 int main() 
@@ -83,8 +90,7 @@ int main()
     Nhap_DS_KH(arr,n);
     cout << "XUAT DANH SACH KHACH HANG" << endl;
     Xuat_DS_KH(arr,n);
-    // Nhap_TT_KH(KH);
-    // In_TT_KH(KH);
+    TinhPhi(arr,n);
     
 
     return 0;
